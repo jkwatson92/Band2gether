@@ -10,6 +10,18 @@ $statement = $db->prepare($allBands);
 $statement->execute();
 $bands=$statement->fetchAll();
 $statement->closeCursor();
+
+// Assume $db is a PDO object
+$query = $db->query('SELECT DISTINCT Genre FROM BAND ORDER BY ASC'); // Run your query
+
+echo '<select name="Genre">'; // Open your drop down box
+
+// Loop through the query results, outputing the options one by one
+while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+   echo '<option value="'.$row['Genre'].'">'.$row['Genre'].'</option>';
+}
+
+echo '</select>';// Close your drop down box
 ?>
 <!DOCTYPE html>
 <html>
