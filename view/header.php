@@ -5,7 +5,7 @@
 <head>
     <title>Band 2gether</title>
     <link rel="stylesheet" type="text/css"
-          href="/Project4/main.css">
+          href="../main.css">
 </head>
 
 <!-- the body section -->
