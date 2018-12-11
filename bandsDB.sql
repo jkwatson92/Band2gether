@@ -97,6 +97,13 @@ CREATE TABLE OPENER(
 		ON DELETE CASCADE	ON UPDATE CASCADE
 );
 
+CREATE TABLE USERS(
+	username varchar(32) NOT NULL,
+	password varchar(32) NOT NULL,
+	role		 varchar(8) NOT NULL,
+	PRIMARY KEY(username),
+);
+
 -- insert data into the database
 INSERT INTO BAND(Name, Genre, Creation, Disband, Region, Email, Website) VALUES
 	('Aim Lower', 'Rock', '2018-04-16', '0000-00-00', 'Westland', 'aimlowerband@gmail.com', 'https://www.facebook.com/pg/aimlowerband/about/?ref=page_internal'),
