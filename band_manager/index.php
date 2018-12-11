@@ -10,18 +10,6 @@ $statement = $db->prepare($allBands);
 $statement->execute();
 $bands=$statement->fetchAll();
 $statement->closeCursor();
-
-// Assume $db is a PDO object
-$query = $db->query('SELECT DISTINCT Genre FROM BAND ORDER BY ASC'); // Run your query
-
-echo '<select name="Genre">'; // Open your drop down box
-
-// Loop through the query results, outputing the options one by one
-while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-   echo '<option value="'.$row['Genre'].'">'.$row['Genre'].'</option>';
-}
-
-echo '</select>';// Close your drop down box
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,34 +18,23 @@ echo '</select>';// Close your drop down box
   <main>
       <!-- display a list of bands -->
       <h2>Band List</h2>
-    <section>
-      <!-- display a table of bands -->
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Genre</th>
-          <th>Region</th>
-          <!-- <th>Email</th>
-          <th>Website</th> -->
-          <th>&nbsp;</th>
-        </tr>
-        <?php foreach($bands as $band) : ?>
-          <tr>
-            <td><?php echo $band['Name']; ?></td>
-            <td><?php echo $band['Genre']; ?></td>
-            <td><?php echo $band['Region']; ?></td>
-            <!-- <td><?php echo $band['Email']; ?></td> -->
-            <!-- Need to add in as hyperlink -->
-            <!-- <td class="right" a href="#"><?php echo $band['Website']; ?></td> -->
-            <!-- <td><form action="delete_tech.php" method="post">
-              <input type="hidden" name="tech_id" value="<?php echo $tech['techID']; ?>">
-              <input type="submit" value="Delete">
-            </form></td> -->
-          </tr>
-        <?php endforeach; ?>
-      </table>
-      <!-- <p><a href="add_tech_form.php">Add Technician</a></p> -->
-    </section>
+      <h3>Filter By Genre:</h3>
+      <form action="filter_results.php" method="post">
+        <select name="Genre">
+        <option value="Alternative">Alternative</option>
+        <option value="Classic">Classic</option>
+        <option value="Country">Country</option>
+        <option value="Disco">Disco</option>
+        <option value="Heavy Metal">Heavy Metal</option>
+        <option value="Hip Hop">Hip Hop</option>
+        <option value="Pop">Pop</option>
+        <option value="Punk">Punk</option>
+        <option value="Reggae">Reggae</option>
+        <option value="Rock">Rock</option>
+        <input type="submit" name="submit" value="Select">
+      </form>
+      <br>
+      <br>
   </main>
 </body>
 </html>
