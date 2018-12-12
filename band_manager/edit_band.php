@@ -37,7 +37,7 @@ endforeach;
           <label>Region:</label><input type="text" name="Region" value="<?php echo $reg; ?>"><br>
           <label>Contact Email:</label><input type="text" name="Email" value="<?php echo $contact; ?>"><br>
           <label>Website:</label><input type="text" name="Website" value="<?php echo $site; ?>"><br>
-		  <input type='hidden' name="Name" value="<?php echo $band_name; ?>">
+		  <input type='hidden' name="NameSearch" value="<?php echo $band_name; ?>">
           <input type="submit" value="Update Info" id="label">
           <br><br>
         </form>

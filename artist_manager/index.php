@@ -25,22 +25,21 @@ $statement->closeCursor();
           <th>Name</th>
           <th>DOB</th>
           <th>Nickname</th>
-          <!-- <th>Email</th>
-          <th>Website</th> -->
-          <th>&nbsp;</th>
+          <th>Email</th>
+			<th>&nbsp;</th>
         </tr>
         <?php foreach($artists as $artist) : ?>
           <tr>
             <td><?php echo $artist['Name']; ?></td>
             <td><?php echo $artist['DOB']; ?></td>
             <td><?php echo $artist['Nickname']; ?></td>
-            <!-- <td><?php echo $band['Email']; ?></td> -->
+            <td><?php echo $artist['Email']; ?></td>
             <!-- Need to add in as hyperlink -->
-            <!-- <td class="right" a href="#"><?php echo $band['Website']; ?></td> -->
-            <!-- <td><form action="delete_tech.php" method="post">
-              <input type="hidden" name="tech_id" value="<?php echo $tech['techID']; ?>">
-              <input type="submit" value="Delete">
-            </form></td> -->
+            <!--<td class="right" a href="#"><?php echo $band['Website']; ?></td>-->
+		  <td><form action="edit_artist.php" method="post">
+          <input type="hidden" name="artistId" value="<?php echo $artist['Id']; ?>">
+          <input name="submit" type="submit" value="Edit">
+        </form></td>
           </tr>
         <?php endforeach; ?>
       </table>
