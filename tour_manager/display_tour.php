@@ -1,14 +1,6 @@
 <?php include '../view/header.php';
 require('../model/database.php');
 
-function debug_to_console( $data ) {
-    $output = $data;
-    if ( is_array( $output ) )
-        $output = implode( ',', $output);
-
-    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
-}
-
 // $bandName = $_GET['Name'];
 $tourID = filter_input(INPUT_POST, 'tour_id');
 $tourName = filter_input(INPUT_POST, 'tour_name');
@@ -18,7 +10,6 @@ $statement = $db->prepare($query);
 $statement->bindValue(':tourID',$tourID);
 $statement->execute();
 $shows=$statement->fetchAll();
-debug_to_console($shows);
 $statement->closeCursor();
 
 ?>
@@ -55,17 +46,20 @@ $statement->closeCursor();
             $statement->execute();
             $openers=$statement->fetchAll();
             $statement->closeCursor(); ?>
-          <?php if($opener['Name'] == NULL){
+          <?php
+            $openerList = "";
             foreach($openers as $opener):
-              $openerList = $openerList + $opener['Band'] + '<br>' ?>
-              <td><?php echo $openerList; ?></td>
+              $openerList = $openerList . $opener['Band'] . '<br>'; ?>
           <?php endforeach; ?>
+          <td><?php echo $openerList; ?></td>
           <td><form action="going_show.php" method="post">
             <input type="hidden" name="tour_id" value="<?php echo $tourID; ?>">
             <input type="hidden" name="tour_name" value="<?php echo $tourName; ?>">
             <input type="hidden" name="show_date" value="<?php echo $tour['Show_Date']; ?>">
             <input type="hidden" name="opener_list" value="<?php echo $openerList; ?>">
+            <input type="hidden" name="headliner_name" value="<?php echo $headlinerName; ?>">
             <input name="submit" type="submit" value="GOING!"></td>
+          <?php endforeach; ?>
         </tr>
       </table>
     </section>
