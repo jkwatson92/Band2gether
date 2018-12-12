@@ -9,7 +9,7 @@
 				<br>
 		  		<a href="../artist_manager">Artists</a>
 				<br>
-					<a href="tour_manager">Tours</a>
+					<a href="../tour_manager">Tours</a>
 			</ul>
 		</nav>
 	</main>

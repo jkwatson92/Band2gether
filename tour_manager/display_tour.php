@@ -47,7 +47,7 @@ $statement->closeCursor();
             $openers=$statement->fetchAll();
             $statement->closeCursor(); ?>
           <?php
-            $openerList = "";
+            $openerList = '';
             foreach($openers as $opener):
               $openerList = $openerList . $opener['Band'] . '<br>'; ?>
           <?php endforeach; ?>
