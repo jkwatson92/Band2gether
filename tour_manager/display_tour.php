@@ -44,27 +44,38 @@ $statement->closeCursor();
           <tr>
             <td><?php echo $show['Venue']; ?></td>
             <td><?php echo $headlinerName; ?></td>
-            <td><?php echo $show['Date'];?></td>
+            <td><?php echo $show['Show_Date'];?></td>
             <td><?php echo $show['Time']; ?></td>
             <?php
-              $tourDate = $show['Date'];
-              $query= 'SELECT * FROM OPENER WHERE Tour_ID =:tourID AND Date = $tourDate';
+              $tourDate = $show['Show_Date'];
+              $query= 'SELECT * FROM OPENER WHERE Tour_ID =:tourID AND Show_Date = :tourDate';
               $statement = $db->prepare($query);
               $statement->bindValue(':tourDate',$tourDate);
               $statement->bindValue(':tourID',$tourID);
               $statement->execute();
               $openers=$statement->fetchAll();
               $statement->closeCursor(); ?>
-            <?php foreach($openers as $opener):
-              $openerList = $openerList + $opener['Band'] + '<br>' ?>
-              <td><?php echo $openerList; ?>.</td>
-            <?php endforeach; ?>
-            <td><form action="going_show.php" method="post">
-              <input type="hidden" name="tour_id" value="<?php echo $tourID; ?>">
-              <input type="hidden" name="tour_name" value="<?php echo $tourName; ?>">
-              <input type="hidden" name="show_date" value="<?php echo $tour['Date']; ?>">
-              <input type="hidden" name="show_date" value="<?php echo $openerList; ?>">
-              <input name="submit" type="submit" value="GOING!"></td>
+            <?php if($opener['Name'] == NULL){
+              foreach($openers as $opener):
+                $openerList = $openerList + $opener['Band'] + '<br>' ?>
+                <td><?php echo $openerList; ?></td>
+              <?php endforeach; ?>
+              <td><form action="going_show.php" method="post">
+                <input type="hidden" name="tour_id" value="<?php echo $tourID; ?>">
+                <input type="hidden" name="tour_name" value="<?php echo $tourName; ?>">
+                <input type="hidden" name="show_date" value="<?php echo $tour['Show_Date']; ?>">
+                <input type="hidden" name="opener_list" value="<?php echo $openerList; ?>">
+                <input name="submit" type="submit" value="GOING!"></td>
+            }
+            else{
+              <td>&nbsp;</td>
+              <td><form action="going_show.php" method="post">
+                <input type="hidden" name="tour_id" value="<?php echo $tourID; ?>">
+                <input type="hidden" name="tour_name" value="<?php echo $tourName; ?>">
+                <input type="hidden" name="show_date" value="<?php echo $tour['Show_Date']; ?>">
+                <input type="hidden" name="opener_list" value="<?php echo ""; ?>">
+                <input name="submit" type="submit" value="GOING!"></td>
+            }
           </tr>
         <?php endforeach; ?>
       </table>
