@@ -15,7 +15,7 @@
     <p>Your local music scene solution!</p>
     <nav>
         <ul>
-            <li><a href="../">Home</a></li>
+			<a href="../home/index.php">Home</a>
         </ul>
     </nav>
 </header>
