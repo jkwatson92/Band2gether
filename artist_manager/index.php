@@ -1,4 +1,3 @@
-<!-- Display the technicians  -->
 <?php include '../view/header.php'; ?>
 <?php
 require('../model/database.php');
@@ -25,8 +24,7 @@ $statement->closeCursor();
           <th>Name</th>
           <th>DOB</th>
           <th>Nickname</th>
-          <th>Email</th>
-			<th>&nbsp;</th>
+          <th>&nbsp;</th>
         </tr>
         <?php foreach($artists as $artist) : ?>
           <tr>
@@ -43,7 +41,6 @@ $statement->closeCursor();
           </tr>
         <?php endforeach; ?>
       </table>
-      <!-- <p><a href="add_tech_form.php">Add Technician</a></p> -->
     </section>
   </main>
 </body>
