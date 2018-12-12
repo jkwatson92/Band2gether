@@ -38,7 +38,6 @@ $statement->closeCursor();
       </tr>
     <?php endforeach; ?>
   </table>
-  <!-- <p><a href="add_tech_form.php">Add Technician</a></p> -->
 </section>
 </body>
 </html>

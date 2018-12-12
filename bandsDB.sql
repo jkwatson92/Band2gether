@@ -78,9 +78,9 @@ CREATE TABLE TOUR(
 CREATE TABLE SHOWS(
 	Tour_ID		INT		NOT NULL,
 	Venue		VARCHAR(64)	NOT NULL,
-	Date		DATE		NOT NULL,
+	Show_Date		DATE		NOT NULL,
 	Time		TIME,
-	PRIMARY KEY(Tour_ID, Date),
+	PRIMARY KEY(Tour_ID, Show_Date),
 	FOREIGN KEY(Tour_ID) REFERENCES TOUR(Tour_ID)
 		ON DELETE CASCADE	ON UPDATE CASCADE,
 	FOREIGN KEY(Venue) REFERENCES VENUE(Venue_name)
@@ -89,12 +89,18 @@ CREATE TABLE SHOWS(
 CREATE TABLE OPENER(
 	Band		VARCHAR(64)	NOT NULL,
 	Tour_ID		INT		NOT NULL,
-	Date		DATE		NOT NULL,
-	PRIMARY KEY(Band, Tour_ID, Date),
+	Show_Date		DATE		NOT NULL,
+	PRIMARY KEY(Band, Tour_ID, Show_Date),
 	FOREIGN KEY(Band) REFERENCES BAND(Name)
 		ON DELETE CASCADE	ON UPDATE CASCADE,
-	FOREIGN KEY(Tour_ID, Date) REFERENCES SHOWS(Tour_ID, Date)
+	FOREIGN KEY(Tour_ID, Show_Date) REFERENCES SHOWS(Tour_ID, Show_Date)
 		ON DELETE CASCADE	ON UPDATE CASCADE
+);
+CREATE TABLE USERS(
+	Username VARCHAR(32) NOT NULL,
+	Password VARCHAR(32) NOT NULL,
+	Role		 VARCHAR(8) NOT NULL,
+	PRIMARY KEY(Username)
 );
 
 -- insert data into the database
@@ -321,7 +327,7 @@ INSERT INTO TOUR(Tour_ID, Name, Headliner) VALUES
 						(1, 'Winter Tour', 'If Walls Could Talk'),
 						(2, 'Winter Tour', 'If Only, If Only');
 
-INSERT INTO SHOWS(Tour_ID, Venue, Date, Time) VALUES
+INSERT INTO SHOWS(Tour_ID, Venue, Show_Date, Time) VALUES
 						(1, 'The Loving Touch', '2018-12-26', '19:00:00'),
 						(2, 'Beat Kitchen', '2018-12-27', '19:00:00'),
 						(2, 'The Firebird', '2018-12-28', '19:00:00'),
@@ -335,7 +341,7 @@ INSERT INTO SHOWS(Tour_ID, Venue, Date, Time) VALUES
 						(2, 'The Loving Touch', '2019-01-05', '19:00:00'),
 						(2, 'Donatos', '2019-01-06', '19:00:00');
 
-INSERT INTO OPENER(Band, Tour_ID, Date) VALUES
+INSERT INTO OPENER(Band, Tour_ID, Show_Date) VALUES
 						('Early Humans', 2, '2018-12-27'),
 						('Early Humans', 2, '2018-12-28'),
 						('Early Humans', 2, '2018-12-29'),
