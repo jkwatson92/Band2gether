@@ -3,7 +3,7 @@
 require('../model/database.php');
 
 //Get all Tours
-$allTours = 'SELECT * FROM TOUR ORDER BY ';
+$allTours = 'SELECT * FROM TOUR ORDER BY TOUR_ID DESC ';
 $statement = $db->prepare($allTours);
 $statement->execute();
 $tours=$statement->fetchAll();
@@ -30,7 +30,9 @@ $statement->closeCursor();
             <td><?php echo $tour['Name']; ?></td>
             <td><?php echo $tour['Headliner']; ?></td>
             <td><form action="display_tour.php" method="post">
-              <input type="hidden" name="tour_id" value="<?php echo $tour['tour_id']; ?>">
+              <input type="hidden" name="tour_id" value="<?php echo $tour['Tour_ID']; ?>">
+              <input type="hidden" name="tour_name" value="<?php echo $tour['Name']; ?>">
+              <input type="hidden" name="headliner_name" value="<?php echo $tour['Headliner']; ?>">
               <input name="submit" type="submit" value="Select">
             </form></td>
           </tr>
